@@ -61,10 +61,13 @@ const showNotification = () => {
     );
 };
 
-const close = () => {
-    const close_button = document.getElementById("close_view");
-    close_button.click();
-    console.log("here");
+const close = async  (id) => {
+    const show =  await  document.querySelector(".modal-backdrop");
+    const modal =  await document.querySelector("#view-"+id);
+    const theme = await document.querySelector('.theme-modal')
+    show.classList.remove("show");
+    theme.classList.remove("show");
+    modal.classList.remove("show");
 };
 
 const handelAddToCart = () => {
@@ -79,7 +82,7 @@ const handelAddToCart = () => {
         })
         .then((res) => {
             if (res.data.added) {
-                close();
+                close(product_module.value.id);
                 showNotification();
             }
         })

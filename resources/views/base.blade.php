@@ -308,8 +308,8 @@
 
     <!-- Theme js -->
     <script src="{{asset('assets_admin/js/script.js')}}"></script>
-    @livewireScripts
     @filamentScripts
+    @livewireScripts
     @vite('resources/js/app.js')
     @yield('script')
 </body>

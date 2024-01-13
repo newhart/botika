@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -22,13 +21,17 @@ class CartController extends Controller
             )
         ]);
 
+        event(new \App\Events\CartNotification('added  with success ful'));
+
         return response()->json(['added' => true]);
     }
 
-    public function removeCart(int $id): RedirectResponse
+    public function removeCart(int $id): JsonResponse
     {
         \Cart::remove($id);
-        return redirect()->route('home')->with('success', 'cart removed with success');
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     public function  list(): View
@@ -39,10 +42,19 @@ class CartController extends Controller
 
     public function countCarts(): JsonResponse
     {
-        $cart = \Cart::getContent();
+        $carts = \Cart::getContent();
+        $datas = [];
+        foreach ($carts as $key => $cart) {
+            $datas[] = [
+                'id' => $cart->id,
+                'name' => $cart->name,
+                'quantity' => $cart->quantity,
+                'image' => $cart->attributes['image']
+            ];
+        }
         $count = \Cart::getContent()->count();
         return response()->json([
-            'carts' => $cart,
+            'carts' => $datas,
             'counts' => $count
         ]);
     }

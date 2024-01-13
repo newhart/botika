@@ -1,6 +1,6 @@
 import "./bootstrap";
 
-import Alpine from "alpinejs";
+// import Alpine from "alpinejs";
 import { createApp } from "vue";
 
 import AdressForm from "./Components/AdressForm.vue";
@@ -10,9 +10,9 @@ import LoginDetail from "./Components/LoginDetail.vue";
 import AddToCart from "./Components/AddToCart.vue";
 import Cart from "./Components/Cart.vue";
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
 createApp({})
     .component("AdressForm", AdressForm)
