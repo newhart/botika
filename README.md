@@ -1,4 +1,4 @@
-# README pour Projet Talk Chat
+# README pour Projet Botika
 
 ## Introduction
 
