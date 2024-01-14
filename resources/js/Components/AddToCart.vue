@@ -4,6 +4,8 @@ import { defineProps, onMounted, ref } from "vue";
 import axios from "axios";
 // state
 const product_module = ref({});
+const text_button  = ref('Add to cart'); 
+const is_submit =  ref(false)
 
 // all props
 const { product, image_url } = defineProps({
@@ -71,6 +73,9 @@ const close = async  (id) => {
 };
 
 const handelAddToCart = () => {
+    is_submit.value = true 
+    text_button.value = 'Chargement...'
+    // post the cart in api 
     axios
         .post("cart/store", {
             id: product_module.value.id,
@@ -84,6 +89,8 @@ const handelAddToCart = () => {
             if (res.data.added) {
                 close(product_module.value.id);
                 showNotification();
+                is_submit.value = false ; 
+                text_button.value = 'Add to Cart'
             }
         })
         .catch((err) => {
@@ -100,8 +107,9 @@ onMounted(() => {
 <template>
     <button
         class="btn btn-md add-cart-button icon"
+        :disabled="is_submit"
         @click.prevent="handelAddToCart()"
     >
-        Add To Cart
+    {{ text_button  }}
     </button>
 </template>
