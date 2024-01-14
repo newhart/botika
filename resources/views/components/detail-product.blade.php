@@ -157,8 +157,8 @@
                                     </div>
                                 </div>
 
-                                <button onclick="location.href = 'cart.html';"
-                                    class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
+                                <add-to-cart class="btn btn-md bg-dark cart-button text-white w-100" product="{{ $product }}"
+                                image_url="{{ $product->images[0]?->imageUrl() }}"  position='detail' />
                             </form>
 
                             <div class="buy-box">
