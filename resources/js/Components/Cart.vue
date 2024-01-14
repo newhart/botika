@@ -101,7 +101,7 @@ onMounted(() => {
 
             <div class="button-group">
                 <a href="/cart/lists" class="btn btn-sm cart-button">View Cart</a>
-                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color text-white">Checkout</a>
+                <a href="/checkout" class="btn btn-sm cart-button theme-bg-color text-white">Checkout</a>
             </div>
         </div>
     </div>

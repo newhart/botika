@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -63,6 +64,11 @@ Route::post('/cart/update/quantity/{id_cart}', [CartController::class, 'updateQu
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
+
+Route::get('/checkout', function () {
+    return view('checkout.index');
+});
+Route::post('/checkout/validate', [CheckoutController::class])->name('checkout.validation');
 
 // create user avis
 Route::post('/create/review', [ReviewController::class, 'store'])->name('review.store');
