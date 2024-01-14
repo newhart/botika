@@ -30,6 +30,7 @@ class CartController extends Controller
     public function removeCart(int $id): JsonResponse
     {
         \Cart::remove($id);
+        event(new \App\Events\RemoveCartEvent('remove to cart with success'));
         return response()->json([
             'success' => true
         ]);

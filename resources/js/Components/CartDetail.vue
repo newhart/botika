@@ -55,6 +55,12 @@ const changeQuantity = (cart_id, type) => {
 // life cycle
 onMounted(() => {
     fetchData()
+    window.Echo.channel('remove')
+        .listen('.RemoveNotification', (e) => {
+            if (e.message) {
+                fetchData()
+            }
+        });
 })
 </script>
 

@@ -49,7 +49,14 @@ onMounted(() => {
             if (e.message) {
                 fetchData()
             }
-        });
+        }); // fetch data  if the cart change (add)
+
+    window.Echo.channel('remove')
+        .listen('.RemoveNotification', (e) => {
+            if (e.message) {
+                fetchData()
+            }
+        }); // fetch data  if the cart change (add)
 });
 </script>
 <template>
