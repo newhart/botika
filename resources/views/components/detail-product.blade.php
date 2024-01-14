@@ -137,29 +137,8 @@
                                 </ul>
                             </div>
 
-                            <form action="{{route('sotre.cart')}}" method="POST" class="note-box product-packege">
-                                @csrf
-                                <div class="cart_qty qty-box product-qty">
-                                    <div class="input-group">
-                                        <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <input class="form-control input-number qty-input" type="text"
-                                            name="quantity" value="1">
-                                            <input type="hidden" name="name" value="{{$product?->name}}">
-                                            <input type="hidden" name="id" value="{{$product?->id}}">
-                                            <input type="hidden" name="price" value="{{$product?->price}}">
-                                            <input type="hidden" name="image" value="{{$product?->images[0]->imageUrl()}}">
-                                        <button type="button" class="qty-left-minus" data-type="minus"
-                                            data-field="">
-                                            <i class="fa fa-minus" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <add-to-cart class="btn btn-md bg-dark cart-button text-white w-100" product="{{ $product }}"
-                                image_url="{{ $product->images[0]?->imageUrl() }}"  position='detail' />
-                            </form>
+                            <add-to-cart-detail product="{{ $product }}" position="modal"
+                            image_url="{{ $product->images[0]?->imageUrl() }}"/>
 
                             <div class="buy-box">
                                 <a href="wishlist.html">

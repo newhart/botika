@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
     public function addToCart(Request $request): JsonResponse
     {
         \Cart::add([
@@ -18,6 +18,7 @@ class CartController extends Controller
             'quantity' => $request->quantity,
             'attributes' => array(
                 'image' => $request->image,
+                'price_before' => $request->compare_at_price
             )
         ]);
 
@@ -34,28 +35,60 @@ class CartController extends Controller
         ]);
     }
 
-    public function  list(): View
+    public function  list(): JsonResponse
     {
-        $carts = \Cart::getContent()->toArray();
-        return view('cart.list', compact('carts'));
+        $carts = \Cart::getContent();
+        $total = \Cart::getTotal();
+        $sub_total = \Cart::getSubTotal();
+        return response()->json([
+            'carts' => $this->getContentCartToArrray($carts),
+            'total' => $total,
+            'sub_total' => $sub_total
+        ]);
+    }
+
+    private function getContentCartToArrray($carts): array
+    {
+        $datas = [];
+
+        foreach ($carts as $cart) {
+            $datas[] = [
+                'id' => $cart->id,
+                'name' => $cart->name,
+                'price' => $cart->price,
+                'quantity' => $cart->quantity,
+                'price_before' => $cart->attributes['price_before'],
+                'image' => $cart->attributes['image']
+            ];
+        }
+
+        return $datas;
     }
 
     public function countCarts(): JsonResponse
     {
         $carts = \Cart::getContent();
-        $datas = [];
-        foreach ($carts as $key => $cart) {
-            $datas[] = [
-                'id' => $cart->id,
-                'name' => $cart->name,
-                'quantity' => $cart->quantity,
-                'image' => $cart->attributes['image']
-            ];
-        }
         $count = \Cart::getContent()->count();
+        $total = \Cart::getTotal();
         return response()->json([
-            'carts' => $datas,
-            'counts' => $count
+            'carts' => $this->getContentCartToArrray($carts),
+            'counts' => $count,
+            'total' => $total
+        ]);
+    }
+
+    public function updateQuantity(int $id_cart, Request $request): JsonResponse
+    {
+        $cart = \Cart::update($id_cart,  ['quantity' => $request->quantity]);
+
+        if ($cart) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        return response()->json([
+            'error' => true
         ]);
     }
 

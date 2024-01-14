@@ -86,6 +86,7 @@ const handelAddToCart = () => {
             name: product_module.value.name,
             price: product_module.value.price,
             slug: product_module.value.page_title,
+            compare_at_price: product_module.value.compare_at_price,
             quantity: quantity.value,
             image: image_url,
         })

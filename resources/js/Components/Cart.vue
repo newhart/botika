@@ -6,6 +6,7 @@ import axios from "axios";
 // all state
 const count = ref(0);
 const carts = ref([]);
+const total = ref(0)
 
 // all methods
 const fetchData = () => {
@@ -15,6 +16,7 @@ const fetchData = () => {
             console.log(res);
             count.value = res.data.counts;
             carts.value = res.data.carts;
+            total.value = res.data.total
         })
         .catch((error) => {
             console.log(error);
@@ -23,8 +25,8 @@ const fetchData = () => {
 
 
 const removeToCart = (id) => {
-    carts.value =  carts.value.filter((item) => item.id !== id);
-    count.value = count.value - 1 
+    carts.value = carts.value.filter((item) => item.id !== id);
+    count.value = count.value - 1
     axios
         .post(`/cart/remove/${id}`)
         .then((res) => {
@@ -42,12 +44,12 @@ const removeToCart = (id) => {
 onMounted(() => {
     fetchData();
     window.Echo.channel('notification')
-    .listen('.PushNotification',(e)=>{
-        console.log('event real time' , e);
-        if(e.message){
-            fetchData()
-        }
-    });
+        .listen('.PushNotification', (e) => {
+            console.log('event real time', e);
+            if (e.message) {
+                fetchData()
+            }
+        });
 });
 </script>
 <template>
@@ -87,11 +89,11 @@ onMounted(() => {
 
             <div class="price-box">
                 <h5>Total :</h5>
-                <h4 class="theme-color fw-bold">$234</h4>
+                <h4 class="theme-color fw-bold">${{ total }}</h4>
             </div>
 
             <div class="button-group">
-                <a href="#" class="btn btn-sm cart-button">View Cart</a>
+                <a href="/cart/lists" class="btn btn-sm cart-button">View Cart</a>
                 <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color text-white">Checkout</a>
             </div>
         </div>

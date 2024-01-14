@@ -4,11 +4,11 @@ import { defineProps, onMounted, ref } from "vue";
 import axios from "axios";
 // state
 const product_module = ref({});
-const text_button  = ref('Add to cart'); 
-const is_submit =  ref(false)
+const text_button = ref('Add to cart');
+const is_submit = ref(false)
 
 // all props
-const { product, image_url } = defineProps({
+const { product, image_url, position } = defineProps({
     product: {
         type: String,
     },
@@ -16,12 +16,15 @@ const { product, image_url } = defineProps({
     image_url: {
         type: String,
     },
+    position: {
+        type: String
+    }
 });
 
 // all methods
 const showNotification = () => {
     const show = document.querySelector(".modal-backdrop");
-    show.classList.add("show");
+    show?.classList?.add("show");
     $.notify(
         {
             icon: "fa fa-check",
@@ -63,9 +66,9 @@ const showNotification = () => {
     );
 };
 
-const close = async  (id) => {
-    const show =  await  document.querySelector(".modal-backdrop");
-    const modal =  await document.querySelector("#view-"+id);
+const close = async (id) => {
+    const show = await document.querySelector(".modal-backdrop");
+    const modal = await document.querySelector("#view-" + id);
     const theme = await document.querySelector('.theme-modal')
     show.classList.remove("show");
     theme.classList.remove("show");
@@ -73,23 +76,28 @@ const close = async  (id) => {
 };
 
 const handelAddToCart = () => {
-    is_submit.value = true 
+    is_submit.value = true
     text_button.value = 'Chargement...'
     // post the cart in api 
     axios
-        .post("cart/store", {
+        .post("/cart/store", {
             id: product_module.value.id,
             name: product_module.value.name,
             price: product_module.value.price,
             slug: product_module.value.page_title,
+            compare_at_price: product_module.value.compare_at_price,
             quantity: 1,
             image: image_url,
         })
         .then((res) => {
             if (res.data.added) {
-                close(product_module.value.id);
+                console.log('here position => ', position);
+                if (position === 'modal') {
+                    close(product_module.value.id)
+                }
                 showNotification();
-                is_submit.value = false ; 
+                // rese to default  value 
+                is_submit.value = false;
                 text_button.value = 'Add to Cart'
             }
         })
@@ -102,14 +110,11 @@ const handelAddToCart = () => {
 onMounted(() => {
     const product_parsed = JSON.parse(product);
     product_module.value = product_parsed;
+    console.log('position', position);
 });
 </script>
 <template>
-    <button
-        class="btn btn-md add-cart-button icon"
-        :disabled="is_submit"
-        @click.prevent="handelAddToCart()"
-    >
-    {{ text_button  }}
+    <button class="btn btn-md add-cart-button icon" :disabled="is_submit" @click.prevent="handelAddToCart()">
+        {{ text_button }}
     </button>
 </template>

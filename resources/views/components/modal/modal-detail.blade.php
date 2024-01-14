@@ -87,7 +87,7 @@
                                    <a href="{{ route('products.detail', ['slug' => $product->page_title]) }}"
                                        class="btn theme-bg-color view-button icon text-white fw-bold btn-md mx-3">
                                        View More Details</a>
-                                   <add-to-cart product="{{ $product }}"
+                                   <add-to-cart product="{{ $product }}" position="modal"
                                        image_url="{{ $product->images[0]?->imageUrl() }}" />
 
                                </div>

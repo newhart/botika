@@ -48,13 +48,17 @@ Route::get('/whislist/{user}/{product}', [WishlistController::class, 'index'])
 
 // cart route
 Route::post('/cart/store', [CartController::class, 'addToCart'])->name('sotre.cart');
-Route::get('/cart/lists', [CartController::class, 'list'])->name('cart.list');
+Route::get('/cart/lists',  function () {
+    return view('cart.list');
+})->name('cart.list');
+Route::get('/cart/content', [CartController::class, 'list'])->name('cart.content');
 Route::post('/cart/delete/{id}', [CartController::class, 'removeCart'])->name('cart.delete');
 Route::get('/cart/counts', [CartController::class, 'countCarts'])->name('cart.count');
 Route::post('/cart/remove/{id}', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact');
+Route::post('/cart/update/quantity/{id_cart}', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
 
 Route::get('/faq', function () {
     return view('faq');
