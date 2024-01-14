@@ -128,8 +128,8 @@ onMounted(() => {
 
                                 <td class="price">
                                     <h4 class="table-title text-content">Price</h4>
-                                    <h5>${{ cart.price }} <del class="text-content">$45.68</del></h5>
-                                    <h6 class="theme-color">You Save : $20.68</h6>
+                                    <h5>${{ cart.price }} <del class="text-content">${{ cart.price_before }}</del></h5>
+                                    <h6 class="theme-color">You Save : ${{ cart.price - cart.price_before }}</h6>
                                 </td>
 
                                 <td class="quantity">

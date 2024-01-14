@@ -65,10 +65,8 @@ Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
 
-Route::get('/checkout', function () {
-    return view('checkout.index');
-});
-Route::post('/checkout/validate', [CheckoutController::class])->name('checkout.validation');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/validate', [CheckoutController::class, 'store'])->name('checkout.validation');
 
 // create user avis
 Route::post('/create/review', [ReviewController::class, 'store'])->name('review.store');
