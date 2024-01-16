@@ -21,7 +21,7 @@ const fetchData = () => {
 
 const removeToCart = (cart_id) => {
     carts.value = carts.value.filter((item) => item.id !== cart_id);
-    count.value = count.value - 1
+    // count.value = count.value - 1
     axios
         .post(`/cart/remove/${id}`)
         .then((res) => {
