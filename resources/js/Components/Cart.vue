@@ -74,12 +74,12 @@ onMounted(() => {
             <ul class="cart-list">
                 <li class="product-box-contain" v-for="(cart, index) in carts" :key="index">
                     <div class="drop-cart">
-                        <a href="#" class="drop-image">
+                        <a :href="`/products/${cart.slug}`" class="drop-image">
                             <img :src="cart.image" class="blur-up lazyload" alt="" />
                         </a>
 
                         <div class="drop-contain">
-                            <a href="#">
+                            <a :href="`/products/${cart.slug}`">
                                 <h5>{{ cart.name }}</h5>
                             </a>
                             <h6>

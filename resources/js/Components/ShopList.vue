@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // state 
 const choice = ref('list-btn')
-const row_class = ref('row g-sm-4 g-3 product-list-section row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2')
+const row_class = ref('row g-sm-4 g-3 product-list-section row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2') // set default value
 const products = ref([])
 
 // methods 
@@ -87,7 +87,6 @@ const plus = (id) => {
     if (index > -1) {
         products.value[index].quantity_front = products.value[index].quantity_front + 1
         const product_module = products.value[index]
-        console.log('before store', product_module);
         axios
             .post("/cart/store", {
                 id: product_module.id,
@@ -118,7 +117,7 @@ const minus = (id) => {
     }
 
     axios.post(`/cart/update/quantity/${products.value[index]?.id}`, {
-        quantity: products.value[index].quantity_front
+        quantity: -products.value[index].quantity_front
     }).then(res => {
         if (res.data.success) {
             fetchData()
@@ -913,7 +912,8 @@ onMounted(() => {
 
                                     <ul class="product-option">
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                :data-bs-target="'#view-' + product.id">
                                                 <font-awesome-icon :icon="['fas', 'eye']" />
                                             </a>
                                         </li>
@@ -989,6 +989,7 @@ onMounted(() => {
                                 </div>
                             </div>
                         </div>
+                        <Detail :product="product"></Detail>
                     </div>
 
                 </div>
@@ -1017,6 +1018,7 @@ onMounted(() => {
                     </ul>
                 </nav>
             </div>
+
         </div>
     </div>
 </template>

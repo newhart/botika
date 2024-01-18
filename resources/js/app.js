@@ -13,6 +13,7 @@ import Cart from "./Components/Cart.vue";
 import CartDetail from "./Components/CartDetail.vue";
 import AddToCartDetail from "./Components/AddToCartDetail.vue";
 import ShopList from "./Components/ShopList.vue";
+import Detail from "./Components/Modal/Detail.vue";
 
 // import icon
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -36,4 +37,5 @@ createApp({})
     .component("FontAwesomeIcon", FontAwesomeIcon)
     .component("ShopList", ShopList)
     .component("Cart", Cart)
+    .component("Detail", Detail)
     .mount("#app");

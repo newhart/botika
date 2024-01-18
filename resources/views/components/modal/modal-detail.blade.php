@@ -4,7 +4,8 @@
        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
            <div class="modal-content">
                <div class="modal-header p-0">
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_view">
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                       id="close_view_{{ $product->id }}">
                        <i class="fa-solid fa-xmark"></i>
                    </button>
                </div>
@@ -71,7 +72,7 @@
                                    </li>
                                </ul>
 
-                               <div class="select-size">
+                               {{-- <div class="select-size">
                                    <h4>Cake Size :</h4>
                                    <select class="form-select select-form-size">
                                        <option selected>Select Size</option>
@@ -81,7 +82,7 @@
                                        <option value="red">Red Roses</option>
                                        <option value="pink">With Pink Roses</option>
                                    </select>
-                               </div>
+                               </div> --}}
 
                                <div class="modal-button flex">
                                    <a href="{{ route('products.detail', ['slug' => $product->page_title]) }}"

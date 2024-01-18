@@ -19,17 +19,14 @@ class CartController extends Controller
                 'id' => $request->id,
                 'name' => $request->name,
                 'price' => $request->price,
-                'slug' => $request->page_title,
                 'quantity' => $request->quantity,
                 'attributes' => array(
                     'image' => $request->image,
-                    'price_before' => $request->compare_at_price
+                    'price_before' => $request->compare_at_price,
+                    'slug' => $request->slug,
                 )
             ]);
         }
-        return response()->json(['success' => true]);
-
-
         event(new \App\Events\CartNotification('added  with success ful'));
 
         return response()->json(['added' => true]);
@@ -62,12 +59,13 @@ class CartController extends Controller
 
         foreach ($carts as $cart) {
             $datas[] = [
-                'id' => $cart->id,
-                'name' => $cart->name,
-                'price' => $cart->price,
-                'quantity' => $cart->quantity,
-                'price_before' => $cart->attributes['price_before'],
-                'image' => $cart->attributes['image']
+                'id' => $cart['id'],
+                'name' => $cart['name'],
+                'price' => $cart['price'],
+                'quantity' => $cart['quantity'],
+                'price_before' => $cart['attributes']['price_before'],
+                'image' => $cart['attributes']['image'],
+                'slug' => $cart['attributes']['slug']
             ];
         }
 
@@ -76,11 +74,11 @@ class CartController extends Controller
 
     public function countCarts(): JsonResponse
     {
-        $carts = \Cart::getContent();
+        $carts = \Cart::getContent()->toArray();
         $count = \Cart::getContent()->count();
         $total = \Cart::getTotal();
         return response()->json([
-            'carts' => $this->getContentCartToArrray($carts),
+            'carts' => count($carts) > 0 ? $this->getContentCartToArrray($carts) : [],
             'counts' => $count,
             'total' => $total
         ]);

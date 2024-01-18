@@ -67,12 +67,16 @@ const showNotification = () => {
 };
 
 const close = async (id) => {
-    const show = await document.querySelector(".modal-backdrop");
-    const modal = await document.querySelector("#view-" + id);
-    const theme = await document.querySelector('.theme-modal')
-    show.classList.remove("show");
-    theme.classList.remove("show");
-    modal.classList.remove("show");
+    // const show = await document.querySelector(".modal-backdrop");
+    // const modal = await document.querySelector("#view-" + id);
+    // const theme = await document.querySelector('.theme-modal')
+    // show.classList.remove("show");
+    // theme.classList.remove("show");
+    // modal.classList.remove("show");
+
+    const test = document.querySelector('#close_view_' + id)
+    console.log('modal to close', test);
+    test.click();
 };
 
 const handelAddToCart = () => {
