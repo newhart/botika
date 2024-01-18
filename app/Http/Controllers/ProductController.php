@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -40,5 +41,19 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         return view('admin.products.edit', compact('product'));
+    }
+
+    public function list(): JsonResponse
+    {
+        $products = Product::with(['categories', 'images'])
+            ->latest()
+            ->paginate(4);
+
+        $products->map(function ($product) {
+            $product->image = $product->images[0]?->imageUrl();
+        });
+
+
+        return response()->json($products);
     }
 }

@@ -121,12 +121,12 @@
                                     </div>
                                     <div class="offcanvas-body">
                                         <ul class="navbar-nav">
-                                            <li class="nav-item">
+                                            <li class="nav-item active">
                                                 <a class="nav-link ps-xl-2 ps-0" href="{{ route('home') }}">Home</a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" href="javascript:void(0)">Shop</a>
+                                                <a class="nav-link" href="{{route('shop.index')}}">Shop</a>
                                             </li>
 
                                             <li class="nav-item dropdown">

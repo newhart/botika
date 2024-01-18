@@ -82,6 +82,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AutheticatedAdminSession::class, 'store'])->name('login.store');
 });
 
+Route::get('shop-list',  function () {
+    return view('shop.index');
+})->name('shop.index');
+
+Route::get('/products-list', [ProductController::class, 'list']);
+
 Route::prefix('admin')
     ->middleware(['auth', 'user-access:admin'])
     ->group(function () {

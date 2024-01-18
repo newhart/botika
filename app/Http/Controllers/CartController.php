@@ -10,17 +10,25 @@ class CartController extends Controller
 
     public function addToCart(Request $request): JsonResponse
     {
-        \Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'slug' => $request->page_title,
-            'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->image,
-                'price_before' => $request->compare_at_price
-            )
-        ]);
+        //get cart by id 
+        $cart = \Cart::get($request->id);
+        if ($cart) {
+            \Cart::update($request->d,  ['quantity' => $request->quantity]);
+        } else {
+            \Cart::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'slug' => $request->page_title,
+                'quantity' => $request->quantity,
+                'attributes' => array(
+                    'image' => $request->image,
+                    'price_before' => $request->compare_at_price
+                )
+            ]);
+        }
+        return response()->json(['success' => true]);
+
 
         event(new \App\Events\CartNotification('added  with success ful'));
 
