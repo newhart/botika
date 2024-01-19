@@ -2,6 +2,7 @@
 // import
 import { defineProps, ref, onMounted } from 'vue';
 import axios from 'axios';
+import { Bootstrap4Pagination } from 'laravel-vue-pagination'
 
 // state 
 const choice = ref('list-btn')
@@ -20,11 +21,11 @@ const setChoice = (type) => {
     }
 }
 
-const fetchProduct = () => {
-    axios.get('/products-list')
+const fetchProduct = (page = 1) => {
+    axios.get('/products-list?page=' + page)
         .then(res => {
-            products.value = res.data.data
-            products.value.map(value => value.quantity_front = 1)
+            products.value = res.data
+            products.value.data.map(value => value.quantity_front = 1)
             console.log('product value', products);
         })
         .catch(err => {
@@ -120,7 +121,7 @@ const minus = (id) => {
         quantity: -products.value[index].quantity_front
     }).then(res => {
         if (res.data.success) {
-            fetchData()
+            fetchProduct()
         }
     })
         .catch(error => {
@@ -902,7 +903,7 @@ onMounted(() => {
                 </div>
 
                 <div :class="row_class">
-                    <div v-for="product in products" :key="product.id">
+                    <div v-for="product in products.data" :key="product.id">
                         <div class="product-box-3 h-100 wow fadeInUp">
                             <div class="product-header">
                                 <div class="product-image">
@@ -994,7 +995,8 @@ onMounted(() => {
 
                 </div>
 
-                <nav class="custome-pagination">
+                <!-- Pagination  -->
+                <!-- <nav class="custome-pagination">
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">
                             <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
@@ -1013,10 +1015,12 @@ onMounted(() => {
                         <li class="page-item">
                             <a class="page-link" href="javascript:void(0)">
                                 <i class="fa-solid fa-angles-right"></i>
-                            </a>
+                            </a>    
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
+                <Bootstrap4Pagination class="my-3" :data="products" @pagination-change-page="fetchProduct" align="center" />
+                <!-- end Pagination  -->
             </div>
 
         </div>

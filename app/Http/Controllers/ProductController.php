@@ -47,7 +47,7 @@ class ProductController extends Controller
     {
         $products = Product::with(['categories', 'images'])
             ->latest()
-            ->paginate(4);
+            ->paginate(10);
 
         $products->map(function ($product) {
             $product->image = $product->images[0]?->imageUrl();
