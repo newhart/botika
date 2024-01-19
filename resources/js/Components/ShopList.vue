@@ -8,6 +8,13 @@ import { Bootstrap4Pagination } from 'laravel-vue-pagination'
 const choice = ref('list-btn')
 const row_class = ref('row g-sm-4 g-3 product-list-section row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2') // set default value
 const products = ref([])
+const categories = ref([
+    { name: 'Kitchen', value: 12 },
+    { name: 'Snacks', value: 13 },
+    { name: 'Beauty', value: 14 },
+    { name: 'Bakery', value: 16 },
+])
+const category_search = ref('')
 
 // methods 
 const setChoice = (type) => {
@@ -19,6 +26,19 @@ const setChoice = (type) => {
     } else {
         row_class.value = 'row g-sm-4 g-3 product-list-section row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2'
     }
+}
+
+const handelSearchCategory = () => {
+    console.log('here => ', category_search.value);
+    if (category_search.value.length > 3) {
+        const search = new RegExp(category_search.value, 'i'); // prepare a regex object
+        categories.value = categories.value.filter(item => search.test(item.name));
+    }
+}
+
+const displayFilter = (id_target) => {
+    const target = document.querySelector(id_target)
+    target.classList.toggle('hidden')
 }
 
 const fetchProduct = (page = 1) => {
@@ -178,151 +198,25 @@ onMounted(() => {
                         <div class="accordion custome-accordion" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button @click="displayFilter('#collapseOne')" class="accordion-button" type="button">
                                         <span>Categories</span>
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                                <div class="hidden" id="collapseOne">
                                     <div class="accordion-body">
                                         <div class="form-floating theme-form-floating-2 search-box">
-                                            <input type="search" class="form-control" id="search" placeholder="Search ..">
+                                            <input v-model="category_search" @input="handelSearchCategory()" type="search"
+                                                class="form-control" id="search" placeholder="Search ..">
                                             <label for="search">Search</label>
                                         </div>
 
                                         <ul class="category-list custom-padding custom-height">
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="fruit">
-                                                    <label class="form-check-label" for="fruit">
-                                                        <span class="name">Fruits & Vegetables</span>
-                                                        <span class="number">(15)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
+                                            <li v-for="category in categories" :key="category.value">
                                                 <div class="form-check ps-0 m-0 category-list-box">
                                                     <input class="checkbox_animated" type="checkbox" id="cake">
                                                     <label class="form-check-label" for="cake">
-                                                        <span class="name">Bakery, Cake & Dairy</span>
-                                                        <span class="number">(12)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="behe">
-                                                    <label class="form-check-label" for="behe">
-                                                        <span class="name">Beverages</span>
-                                                        <span class="number">(20)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="snacks">
-                                                    <label class="form-check-label" for="snacks">
-                                                        <span class="name">Snacks & Branded Foods</span>
-                                                        <span class="number">(05)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="beauty">
-                                                    <label class="form-check-label" for="beauty">
-                                                        <span class="name">Beauty & Household</span>
-                                                        <span class="number">(30)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="pets">
-                                                    <label class="form-check-label" for="pets">
-                                                        <span class="name">Kitchen, Garden & Pets</span>
-                                                        <span class="number">(50)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="egg">
-                                                    <label class="form-check-label" for="egg">
-                                                        <span class="name">Eggs, Meat & Fish</span>
-                                                        <span class="number">(19)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="food">
-                                                    <label class="form-check-label" for="food">
-                                                        <span class="name">Gourment & World Food</span>
-                                                        <span class="number">(30)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="care">
-                                                    <label class="form-check-label" for="care">
-                                                        <span class="name">Baby Care</span>
-                                                        <span class="number">(20)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="fish">
-                                                    <label class="form-check-label" for="fish">
-                                                        <span class="name">Fish & Seafood</span>
-                                                        <span class="number">(10)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="marinades">
-                                                    <label class="form-check-label" for="marinades">
-                                                        <span class="name">Marinades</span>
-                                                        <span class="number">(05)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="lamb">
-                                                    <label class="form-check-label" for="lamb">
-                                                        <span class="name">Mutton & Lamb</span>
-                                                        <span class="number">(09)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="other">
-                                                    <label class="form-check-label" for="other">
-                                                        <span class="name">Port & other Meats</span>
-                                                        <span class="number">(06)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="pour">
-                                                    <label class="form-check-label" for="pour">
-                                                        <span class="name">Pourltry</span>
-                                                        <span class="number">(01)</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="salami">
-                                                    <label class="form-check-label" for="salami">
-                                                        <span class="name">Sausages, bacon & Salami</span>
-                                                        <span class="number">(03)</span>
+                                                        <span class="name">{{ category.name }}</span>
+                                                        <span class="number">({{ category.value }})</span>
                                                     </label>
                                                 </div>
                                             </li>
@@ -333,12 +227,12 @@ onMounted(() => {
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        @click="displayFilter('#collapseTwo')">
                                         <span>Food Preference</span>
                                     </button>
                                 </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                                <div id="collapseTwo" class="hidden">
                                     <div class="accordion-body">
                                         <ul class="category-list custom-padding">
                                             <li>
@@ -367,13 +261,12 @@ onMounted(() => {
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="accordion-button collapsed" type="button"
+                                        @click="displayFilter('#collapseThree')">
                                         <span>Price</span>
                                     </button>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingThree">
+                                <div id="collapseThree" class="hidden" aria-labelledby="headingThree">
                                     <div class="accordion-body">
                                         <div class="range-slider">
                                             <input type="text" class="js-range-slider" value="">
@@ -384,12 +277,12 @@ onMounted(() => {
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    <button class="accordion-button collapsed" type="button"
+                                        @click="displayFilter('#collapseSix')">
                                         <span>Rating</span>
                                     </button>
                                 </h2>
-                                <div id="collapseSix" class="accordion-collapse collapse show" aria-labelledby="headingSix">
+                                <div id="collapseSix" class="hidden">
                                     <div class="accordion-body">
                                         <ul class="category-list custom-padding">
                                             <li>
@@ -528,13 +421,12 @@ onMounted(() => {
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <button class="accordion-button collapsed" type="button"
+                                        @click="displayFilter('#collapseFour')">
                                         <span>Discount</span>
                                     </button>
                                 </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingFour">
+                                <div id="collapseFour" class="hidden" aria-labelledby="headingFour">
                                     <div class="accordion-body">
                                         <ul class="category-list custom-padding">
                                             <li>
@@ -593,13 +485,12 @@ onMounted(() => {
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    <button class="accordion-button collapsed" type="button"
+                                        @click="displayFilter('#collapseFive')">
                                         <span>Pack Size</span>
                                     </button>
                                 </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingFive">
+                                <div id="collapseFive" class="hidden" aria-labelledby="headingFive">
                                     <div class="accordion-body">
                                         <ul class="category-list custom-padding custom-height">
                                             <li>
