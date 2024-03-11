@@ -31,6 +31,10 @@
     --theme-color2: linear-gradient(90.56deg, var(--theme-color1) 8.46%, var(--theme-color) 62.97%)
 }
 
+input[type="text"] {
+    color  : red !important  ;
+}
+
 @-webkit-keyframes scaleUpDown {
 
     0%,

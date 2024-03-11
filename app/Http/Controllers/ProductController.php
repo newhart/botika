@@ -53,7 +53,6 @@ class ProductController extends Controller
             $product->image = $product->images[0]?->imageUrl();
         });
 
-
         return response()->json($products);
     }
 }

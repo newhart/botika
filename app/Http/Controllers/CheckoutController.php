@@ -8,7 +8,7 @@ class CheckoutController extends Controller
 {
     public function store(Request $request)
     {
-
+        // TODO  create the order  here and add all relationship
         dd($request->all());
     }
 

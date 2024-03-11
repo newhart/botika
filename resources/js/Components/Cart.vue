@@ -13,7 +13,6 @@ const fetchData = () => {
     axios
         .get("/cart/counts")
         .then((res) => {
-            console.log(res);
             count.value = res.data.counts;
             carts.value = res.data.carts;
             total.value = res.data.total
@@ -30,7 +29,6 @@ const removeToCart = (id) => {
     axios
         .post(`/cart/remove/${id}`)
         .then((res) => {
-            console.log(res);
             if (res.data.removed) {
                 fetchData();
             }
@@ -45,7 +43,6 @@ onMounted(() => {
     fetchData();
     window.Echo.channel('notification')
         .listen('.PushNotification', (e) => {
-            console.log('event real time', e);
             if (e.message) {
                 fetchData()
             }

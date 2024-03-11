@@ -10,10 +10,10 @@ class CartController extends Controller
 
     public function addToCart(Request $request): JsonResponse
     {
-        //get cart by id 
+        //get cart by id
         $cart = \Cart::get($request->id);
         if ($cart) {
-            \Cart::update($request->d,  ['quantity' => $request->quantity]);
+            \Cart::update($request->id,  ['quantity' => $request->quantity]);
         } else {
             \Cart::add([
                 'id' => $request->id,
@@ -27,9 +27,11 @@ class CartController extends Controller
                 )
             ]);
         }
+
+
         event(new \App\Events\CartNotification('added  with success ful'));
 
-        return response()->json(['added' => true]);
+        return response()->json(['added' => true , 'cart' => $cart]);
     }
 
     public function removeCart(int $id): JsonResponse

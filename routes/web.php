@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileClientController;
 use App\Http\Controllers\ReviewController;
@@ -87,6 +88,9 @@ Route::get('shop-list',  function () {
 })->name('shop.index');
 
 Route::get('/products-list', [ProductController::class, 'list']);
+
+// Order route
+Route::post('order/store', [OrderController::class, 'store'])->name('order.store')->middleware(['auth', 'user-access:client']);
 
 Route::prefix('admin')
     ->middleware(['auth', 'user-access:admin'])

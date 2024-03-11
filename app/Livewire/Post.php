@@ -52,9 +52,12 @@ class Post extends Component implements HasForms
     {
         return $form
             ->schema([
-                Section::make('Product Information haritiana')
+                Section::make('Information de la produit')
                     ->schema([
                         TextInput::make('name')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->required(),
                         Select::make('type')
                             ->options([

@@ -9,7 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
-    protected $providers = ["google", "github", "facebook"]; // provider authorize 
+    protected $providers = ["google", "github", "facebook"]; // provider authorize
 
     # redirection vers le provider
     public function redirect(Request $request)
@@ -17,7 +17,7 @@ class SocialiteController extends Controller
 
         $provider = $request->provider;
 
-        // verify if authorize 
+        // verify if authorize
         if (in_array($provider, $this->providers)) {
             return Socialite::driver($provider)->redirect(); // redirect
         }

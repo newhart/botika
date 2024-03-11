@@ -258,295 +258,65 @@
                 </div>
 
                 <div class="row row-cols-xxl-5 row-cols-md-4 row-cols-sm-3 row-cols-2 g-sm-4 g-3 no-arrow">
-                    <div>
-                        <div class="product-box product-white-bg wow fadeIn">
-                            <div class="product-image">
-                                <a href="product-left-thumbnail.html">
-                                    <img src="{{ asset('assets/images/furniture/13.png') }}"
-                                        class="img-fluid blur-up lazyload" alt="">
-                                </a>
-                                <ul class="product-option">
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                                            <i data-feather="eye"></i>
-                                        </a>
-                                    </li>
+                    @foreach($products as $product)
+                        <div>
+                            <div class="product-box product-white-bg wow fadeIn">
+                                <div class="product-image">
+                                    <a href="product-left-thumbnail.html">
+                                        <img src="{{ asset('assets/images/furniture/13.png') }}"
+                                             class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+                                    <ul class="product-option">
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                                <i data-feather="eye"></i>
+                                            </a>
+                                        </li>
 
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                        <a href="compare.html">
-                                            <i data-feather="refresh-cw"></i>
-                                        </a>
-                                    </li>
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
+                                            <a href="compare.html">
+                                                <i data-feather="refresh-cw"></i>
+                                            </a>
+                                        </li>
 
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                        <a href="#" class="notifi-wishlist">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product-detail position-relative">
-                                <a href="product-left-thumbnail.html">
-                                    <h6 class="name">Elama Fine Round Gloss Dinnerware Dish Set</h6>
-                                </a>
+                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                            <a href="#" class="notifi-wishlist">
+                                                <i data-feather="heart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-detail position-relative">
+                                    <a href="product-left-thumbnail.html">
+                                        <h6 class="name">Elama Fine Round Gloss Dinnerware Dish Set</h6>
+                                    </a>
 
-                                <h6 class="sold weight text-content fw-normal">1 KG</h6>
+                                    <h6 class="sold weight text-content fw-normal">1 KG</h6>
 
-                                <h6 class="price theme-color">$ 80.00</h6>
+                                    <h6 class="price theme-color">$ 80.00</h6>
 
-                                <div class="add-to-cart-btn-2 addtocart_btn">
-                                    <button class="btn addcart-button btn buy-button"><i
-                                            class="fa-solid fa-plus"></i></button>
-                                    <div class="cart_qty qty-box-2">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="1">
-                                            <button type="button" class="qty-right-plus" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
+                                    <div class="add-to-cart-btn-2 addtocart_btn">
+                                        <button class="btn addcart-button btn buy-button"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                        <div class="cart_qty qty-box-2">
+                                            <div class="input-group">
+                                                <button type="button" class="qty-left-minus" data-type="minus"
+                                                        data-field="">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                       name="quantity" value="1">
+                                                <button type="button" class="qty-right-plus" data-type="plus"
+                                                        data-field="">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div>
-                        <div class="product-box product-white-bg wow fadeIn" data-wow-delay="0.1s">
-                            <div class="product-image">
-                                <a href="product-left-thumbnail.html">
-                                    <img src="{{ asset('assets/images/furniture/8.png') }}"
-                                        class="img-fluid blur-up lazyload" alt="">
-                                </a>
-                                <ul class="product-option">
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                                            <i data-feather="eye"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                        <a href="compare.html">
-                                            <i data-feather="refresh-cw"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                        <a href="#" class="notifi-wishlist">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product-detail position-relative">
-                                <a href="product-left-thumbnail.html">
-                                    <h6 class="name">Goddess Marble Hexagon Party Plates</h6>
-                                </a>
-
-                                <h6 class="sold weight text-content fw-normal">1 KG</h6>
-
-                                <h6 class="price theme-color">$ 80.00</h6>
-
-                                <div class="add-to-cart-btn-2 addtocart_btn">
-                                    <button class="btn addcart-button btn buy-button"><i
-                                            class="fa-solid fa-plus"></i></button>
-                                    <div class="cart_qty qty-box-2">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="1">
-                                            <button type="button" class="qty-right-plus" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="product-box product-white-bg wow fadeIn">
-                            <div class="product-image">
-                                <a href="product-left-thumbnail.html">
-                                    <img src="{{ asset('assets/images/furniture/10.png') }}"
-                                        class="img-fluid blur-up lazyload" alt="">
-                                </a>
-                                <ul class="product-option">
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                                            <i data-feather="eye"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                        <a href="compare.html">
-                                            <i data-feather="refresh-cw"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                        <a href="#" class="notifi-wishlist">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product-detail position-relative">
-                                <a href="product-left-thumbnail.html">
-                                    <h6 class="name">heavy duty cane round basket</h6>
-                                </a>
-
-                                <h6 class="sold weight text-content fw-normal">1 KG</h6>
-
-                                <h6 class="price theme-color">$ 80.00</h6>
-
-                                <div class="add-to-cart-btn-2 addtocart_btn">
-                                    <button class="btn addcart-button btn buy-button"><i
-                                            class="fa-solid fa-plus"></i></button>
-                                    <div class="cart_qty qty-box-2">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="1">
-                                            <button type="button" class="qty-right-plus" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="product-box product-white-bg wow fadeIn" data-wow-delay="0.1s">
-                            <div class="product-image">
-                                <a href="product-left-thumbnail.html">
-                                    <img src="{{ asset('assets/images/furniture/6.png') }}"
-                                        class="img-fluid blur-up lazyload" alt="">
-                                </a>
-                                <ul class="product-option">
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                                            <i data-feather="eye"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                        <a href="compare.html">
-                                            <i data-feather="refresh-cw"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                        <a href="#" class="notifi-wishlist">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product-detail position-relative">
-                                <a href="product-left-thumbnail.html">
-                                    <h6 class="name">Nature Baby Merino Knit Bassinet Blanket</h6>
-                                </a>
-
-                                <h6 class="sold weight text-content fw-normal">1 KG</h6>
-
-                                <h6 class="price theme-color">$ 80.00</h6>
-
-                                <div class="add-to-cart-btn-2 addtocart_btn">
-                                    <button class="btn addcart-button btn buy-button"><i
-                                            class="fa-solid fa-plus"></i></button>
-                                    <div class="cart_qty qty-box-2">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="1">
-                                            <button type="button" class="qty-right-plus" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="product-box product-white-bg wow fadeIn">
-                            <div class="product-image">
-                                <a href="product-left-thumbnail.html">
-                                    <img src="{{ asset('assets/images/furniture/4.png') }}"
-                                        class="img-fluid blur-up lazyload" alt="">
-                                </a>
-                                <ul class="product-option">
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                                            <i data-feather="eye"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Compare">
-                                        <a href="compare.html">
-                                            <i data-feather="refresh-cw"></i>
-                                        </a>
-                                    </li>
-
-                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
-                                        <a href="#" class="notifi-wishlist">
-                                            <i data-feather="heart"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product-detail position-relative">
-                                <a href="product-left-thumbnail.html">
-                                    <h6 class="name">ELSTONE HOME White Colour Bath Towel</h6>
-                                </a>
-
-                                <h6 class="sold weight text-content fw-normal">1 KG</h6>
-
-                                <h6 class="price theme-color">$ 80.00</h6>
-
-                                <div class="add-to-cart-btn-2 addtocart_btn">
-                                    <button class="btn addcart-button btn buy-button"><i
-                                            class="fa-solid fa-plus"></i></button>
-                                    <div class="cart_qty qty-box-2">
-                                        <div class="input-group">
-                                            <button type="button" class="qty-left-minus" data-type="minus"
-                                                data-field="">
-                                                <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </button>
-                                            <input class="form-control input-number qty-input" type="text"
-                                                name="quantity" value="1">
-                                            <button type="button" class="qty-right-plus" data-type="plus"
-                                                data-field="">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                     @include('components.modal-detail')
                 </div>
             </div>
