@@ -13,6 +13,7 @@ class ProductController extends Controller
     public function show(string $slug): View
     {
         $product = Product::where('page_title', $slug)
+            ->whereHas('images')
             ->with(['images', 'categories', 'variants', 'reviews'])
             ->first();
         return view('products.index', compact('product'));
@@ -21,6 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['categories', 'images'])
+            ->whereHas('images')
             ->latest()
             ->paginate(4);
         return view('admin.products.index', compact('products'));
@@ -46,9 +48,9 @@ class ProductController extends Controller
     public function list(): JsonResponse
     {
         $products = Product::with(['categories', 'images'])
+            ->whereHas('images')
             ->latest()
             ->paginate(10);
-
         $products->map(function ($product) {
             $product->image = $product->images[0]?->imageUrl();
         });

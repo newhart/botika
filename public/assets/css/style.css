@@ -31,10 +31,6 @@
     --theme-color2: linear-gradient(90.56deg, var(--theme-color1) 8.46%, var(--theme-color) 62.97%)
 }
 
-input[type="text"] {
-    color  : red !important  ;
-}
-
 @-webkit-keyframes scaleUpDown {
 
     0%,
@@ -29995,6 +29991,12 @@ header .offcanvas-backdrop {
 
 [dir="rtl"] ul {
     padding-right: 0
+}
+
+/* add custom style for filament php form builde */
+
+.fi-section-header-heading{
+    color : #000 !important ;
 }
 
 /*# sourceMappingURL=style.css.map */

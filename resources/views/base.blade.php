@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{asset('assets_admin/images/favicon.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{asset('assets_admin/images/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets_admin/images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets_admin/images/favicon.png') }}" type="image/x-icon">
     <title>Fastkart - Dashboard</title>
 
     <!-- Google font-->
@@ -20,38 +20,68 @@
         rel="stylesheet">
 
     <!-- Linear Icon css -->
-    <link rel="stylesheet" href="{{asset('assets_admin/css/linearicon.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets_admin/css/linearicon.css') }}">
 
     <!-- fontawesome css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/font-awesome.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/font-awesome.css') }}">
 
     <!-- Themify icon css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/themify.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/themify.css') }}">
 
     <!-- ratio css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/ratio.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/ratio.css') }}">
 
     <!-- remixicon css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/remixicon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/remixicon.css') }}">
 
     <!-- Feather icon css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/feather-icon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/feather-icon.css') }}">
 
     <!-- Plugins css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/scrollbar.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/scrollbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/animate.css') }}">
 
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vendors/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vendors/bootstrap.css') }}">
 
     <!-- vector map css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/vector-map.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/vector-map.css') }}">
 
     <!-- Slick Slider Css -->
-    <link rel="stylesheet" href="{{asset('assets_admin/css/vendors/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets_admin/css/vendors/slick.css') }}">
 
     <!-- App css -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets_admin/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets_admin/css/style.css') }}">
+
+    <style>
+        .font-medium,
+        .text-base {
+            color: #000 !important;
+        }
+
+        input,
+        select,
+        textarea {
+            color: #0000;
+        }
+
+        .fi-btn {
+            color: #000;
+        }
+
+        .choices__input {
+            color: #000;
+        }
+
+        textarea:focus,
+        input:focus {
+            color: #0000;
+        }
+
+        label {
+            color: #dedede !important;
+        }
+    </style>
 
     @livewireStyles
     @filamentStyles
@@ -73,14 +103,16 @@
                 <div class="header-logo-wrapper p-0">
                     <div class="logo-wrapper">
                         <a href="index.html">
-                            <img class="img-fluid main-logo" src="{{asset('assets_admin/images/logo/1.png')}}" alt="logo">
-                            <img class="img-fluid white-logo" src="{{asset('assets_admin/images/logo/1-white.png')}}" alt="logo">
+                            <img class="img-fluid main-logo" src="{{ asset('assets_admin/images/logo/1.png') }}"
+                                alt="logo">
+                            <img class="img-fluid white-logo" src="{{ asset('assets_admin/images/logo/1-white.png') }}"
+                                alt="logo">
                         </a>
                     </div>
                     <div class="toggle-sidebar">
                         <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
                         <a href="index.html">
-                            <img src="{{asset('assets_admin/images/logo/1.png')}}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets_admin/images/logo/1.png') }}" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -154,7 +186,8 @@
                         </li>
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
                             <div class="media profile-media">
-                                <img class="user-profile rounded-circle" src="assets_admin/images/users/4.jpg" alt="">
+                                <img class="user-profile rounded-circle" src="assets_admin/images/users/4.jpg"
+                                    alt="">
                                 <div class="user-name-hide media-body">
                                     <span>Emay Walter</span>
                                     <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
@@ -162,7 +195,7 @@
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
                                 <li>
-                                    <a href="{{route('users.index')}}">
+                                    <a href="{{ route('users.index') }}">
                                         <i data-feather="users"></i>
                                         <span>Users</span>
                                     </a>
@@ -209,11 +242,11 @@
             <!-- index body start -->
             <div class="page-body">
                 <div class="container-fluid">
-                    @if(Session::has('success'))
-                    <div class="alert alert-primary">{{Session::get('success')}}</div>
+                    @if (Session::has('success'))
+                        <div class="alert alert-primary">{{ Session::get('success') }}</div>
                     @endif
-                    @if(Session::has('error'))
-                    <div class="alert alert-danger">{{Session::get('error')}}</div>
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
                     @endif
                     @yield('content')
                 </div>
@@ -249,7 +282,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="button-box">
                         <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
-                        <form action="{{route('logout')}}" method="post">
+                        <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="btn  btn--yes btn-primary">Yes</button>
                         </form>
@@ -261,53 +294,53 @@
     <!-- Modal End -->
 
     <!-- latest js -->
-    <script src="{{asset('assets_admin/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/jquery-3.6.0.min.js') }}"></script>
 
     <!-- Bootstrap js -->
-    <script src="{{asset('assets_admin/js/bootstrap/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
     <!-- feather icon js -->
-    <script src="{{asset('assets_admin/js/icons/feather-icon/feather.min.js')}}"></script>
-    <script src="{{asset('assets_admin/js/icons/feather-icon/feather-icon.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/icons/feather-icon/feather.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/icons/feather-icon/feather-icon.js') }}"></script>
 
     <!-- scrollbar simplebar js -->
-    <script src="{{asset('assets_admin/js/scrollbar/simplebar.js')}}"></script>
-    <script src="{{asset('assets_admin/js/scrollbar/custom.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/scrollbar/simplebar.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/scrollbar/custom.js') }}"></script>
 
     <!-- Sidebar jquery -->
-    <script src="{{asset('assets_admin/js/config.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/config.js') }}"></script>
 
     <!-- tooltip init js -->
-    <script src="{{asset('assets_admin/js/tooltip-init.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/tooltip-init.js') }}"></script>
 
     <!-- Plugins JS -->
-    <script src="{{asset('assets_admin/js/sidebar-menu.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/sidebar-menu.js') }}"></script>
     {{-- <script src="{{asset('assets_admin/js/notify/bootstrap-notify.min.js')}}"></script>
     <script src="{{asset('assets_admin/js/notify/index.js')}}"></script> --}}
 
     <!-- Apexchar js -->
-    <script src="{{asset('assets_admin/js/chart/apex-chart/apex-chart1.js')}}"></script>
-    <script src="{{asset('assets_admin/js/chart/apex-chart/moment.min.js')}}"></script>
-    <script src="{{asset('assets_admin/js/chart/apex-chart/apex-chart.js')}}"></script>
-    <script src="{{asset('assets_admin/js/chart/apex-chart/stock-prices.js')}}"></script>
-    <script src="{{asset('assets_admin/js/chart/apex-chart/chart-custom1.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/chart/apex-chart/apex-chart1.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/chart/apex-chart/moment.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/chart/apex-chart/apex-chart.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/chart/apex-chart/stock-prices.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/chart/apex-chart/chart-custom1.js') }}"></script>
 
 
     <!-- slick slider js -->
-    <script src="{{asset('assets_admin/js/slick.min.js')}}"></script>
-    <script src="{{asset('assets_admin/js/custom-slick.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/custom-slick.js') }}"></script>
 
     <!-- customizer js -->
-    <script src="{{asset('assets_admin/js/customizer.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/customizer.js') }}"></script>
 
     <!-- ratio js -->
-    <script src="{{asset('assets_admin/js/ratio.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/ratio.js') }}"></script>
 
     <!-- sidebar effect -->
-    <script src="{{asset('assets_admin/js/sidebareffect.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/sidebareffect.js') }}"></script>
 
     <!-- Theme js -->
-    <script src="{{asset('assets_admin/js/script.js')}}"></script>
+    <script src="{{ asset('assets_admin/js/script.js') }}"></script>
     @filamentScripts
     @livewireScripts
     @vite('resources/js/app.js')

@@ -36,10 +36,10 @@ class Post extends Component implements HasForms
         $data['tags'] = implode(',', $data['tags']);
         $product =  Product::create($data);
         $this->form->model($product)->saveRelationships();
-        Notification::make()
-            ->title('Saved successfully')
-            ->success()
-            ->send();
+        // Notification::make()
+        //     ->title('Saved successfully')
+        //     ->success()
+        //     ->send();
         return redirect()->route('products.index')->with('success', 'Product created with success');
     }
 
@@ -60,14 +60,24 @@ class Post extends Component implements HasForms
                             ])
                             ->required(),
                         Select::make('type')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->options([
                                 'simple' => 'Simple',
                                 'classified' => 'Classified',
-                            ]),
+                            ])->required(),
                         Select::make('categories')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->multiple()
-                            ->relationship('categories',  'name'),
+                            ->relationship('categories',  'name')
+                            ->required(),
                         Select::make('brand')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->options([
                                 'puma' => 'Puma',
                                 'zara' => 'Zara',
@@ -75,18 +85,32 @@ class Post extends Component implements HasForms
                                 'roadster' => 'Roadster',
                             ]),
                         Select::make('unit')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->options([
                                 'piece' => 'Piece',
                                 'kilogram' => 'Kilogram',
                             ]),
-                        TagsInput::make('tags'),
+                        TagsInput::make('tags')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ]),
                         TextInput::make('stock')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->numeric()
                             ->required()
                     ]),
                 Section::make('Description')
                     ->schema([
-                        RichEditor::make('description'),
+                        RichEditor::make('description')->extraInputAttributes([
+                            'style' => 'border : 2px solid #dede ; color : #0000',
+                        ])
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ]),
                     ]),
                 Section::make('Product Image')
                     ->schema([
@@ -96,7 +120,9 @@ class Post extends Component implements HasForms
                                 FileUpload::make('image')
                                     ->image()
                                     ->imageEditor()
-                                    ->required(),
+                                    ->extraInputAttributes([
+                                        'style' => 'border : 2px solid #dede ; color : #0000',
+                                    ])
                             ])
                     ]),
                 Section::make('Product variations')
@@ -110,36 +136,62 @@ class Post extends Component implements HasForms
                                         'size' => 'Size',
                                         'material' => 'Material',
                                         'style' => 'Style',
+                                    ])
+                                    ->required()
+                                    ->extraInputAttributes([
+                                        'style' => 'border : 2px solid #dede ; color : #0000',
                                     ]),
                                 TextInput::make('value')
+                                    ->extraInputAttributes([
+                                        'style' => 'border : 2px solid #dede ; color : #0000',
+                                    ])
                             ])
                     ]),
                 Section::make('Shipping')
                     ->schema([
                         TextInput::make('weight')
-                            ->numeric(),
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
+                            ->numeric()
+                            ->required(),
                         Select::make('dimensions')
                             ->options([
                                 'length' => 'Length',
                                 'width' => 'Width',
                                 'height' => 'Height',
+                            ])
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
                             ]),
                     ]),
                 Section::make('Product Price')
                     ->schema([
                         TextInput::make('price')
                             ->numeric()
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->required(),
                         TextInput::make('compare_at_price')
                             ->numeric()
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->required(),
                         TextInput::make('cos_per_item')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->numeric()
                             ->required()
                     ]),
                 Section::make('Product Inventory')
                     ->schema([
                         TextInput::make('sku')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->required()
                             ->unique(),
                         Select::make('status')
@@ -147,21 +199,23 @@ class Post extends Component implements HasForms
                                 'in sotck' => 'In stock',
                                 'out of stock' => 'Out of Stock',
                                 'on backorder' => 'On Backorder',
+                            ])
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
                             ]),
                     ]),
                 Section::make('Search engine listing')
                     ->schema([
-                        TextInput::make('page_title'),
-                        Textarea::make('meta_description'),
+                        TextInput::make('page_title')->extraInputAttributes([
+                            'style' => 'border : 2px solid #dede ; color : #0000',
+                        ]),
+                        Textarea::make('meta_description')->extraInputAttributes([
+                            'style' => 'border : 2px solid #dede ; color : #0000',
+                        ]),
                     ])
             ])
             ->statePath('data')
             ->model(Product::class);
-    }
-
-    public function saveOrUpdate()
-    {
-        dd('ok');
     }
 
     public function getFormModel(): \Illuminate\Database\Eloquent\Model|string|null

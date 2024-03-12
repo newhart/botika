@@ -258,17 +258,18 @@
                 </div>
 
                 <div class="row row-cols-xxl-5 row-cols-md-4 row-cols-sm-3 row-cols-2 g-sm-4 g-3 no-arrow">
-                    @foreach($products as $product)
+                    @foreach ($products as $product)
                         <div>
                             <div class="product-box product-white-bg wow fadeIn">
                                 <div class="product-image">
-                                    <a href="product-left-thumbnail.html">
-                                        <img src="{{ asset('assets/images/furniture/13.png') }}"
-                                             class="img-fluid blur-up lazyload" alt="">
+                                    <a href="{{ route('products.detail', ['slug' => $product->page_title]) }}">
+                                        <img src="{{ $product->images[0]?->imageUrl() }}"
+                                            class="img-fluid blur-up lazyload" alt="">
                                     </a>
                                     <ul class="product-option">
                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                data-bs-target="#view-{{ $product->id }}">
                                                 <i data-feather="eye"></i>
                                             </a>
                                         </li>
@@ -287,13 +288,15 @@
                                     </ul>
                                 </div>
                                 <div class="product-detail position-relative">
-                                    <a href="product-left-thumbnail.html">
-                                        <h6 class="name">Elama Fine Round Gloss Dinnerware Dish Set</h6>
+                                    <a
+                                        href="{{ route('whislist.index', ['user' => auth()?->user()?->id ?? 1, 'product' => $product->id]) }}">
+                                        <h6 class="name">{{ $product->name }}</h6>
                                     </a>
 
-                                    <h6 class="sold weight text-content fw-normal">1 KG</h6>
+                                    <h6 class="sold weight text-content fw-normal">{{ $product->weight }}
+                                        {{ $product->unit }}</h6>
 
-                                    <h6 class="price theme-color">$ 80.00</h6>
+                                    <h6 class="price theme-color">{{ $product->price }}</h6>
 
                                     <div class="add-to-cart-btn-2 addtocart_btn">
                                         <button class="btn addcart-button btn buy-button"><i
@@ -301,13 +304,13 @@
                                         <div class="cart_qty qty-box-2">
                                             <div class="input-group">
                                                 <button type="button" class="qty-left-minus" data-type="minus"
-                                                        data-field="">
+                                                    data-field="">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
                                                 <input class="form-control input-number qty-input" type="text"
-                                                       name="quantity" value="1">
+                                                    name="quantity" value="1">
                                                 <button type="button" class="qty-right-plus" data-type="plus"
-                                                        data-field="">
+                                                    data-field="">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                 </button>
                                             </div>

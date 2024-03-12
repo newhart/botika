@@ -2,7 +2,7 @@
     <form wire:submit.prevent="submit">
         {{ $this->form }}
         <button type="submit" class="btn btn-primary">
-            Submit
+            Valider
         </button>
     </form>
     <x-filament-actions::modals />
