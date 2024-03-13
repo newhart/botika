@@ -81,6 +81,12 @@
         label {
             color: #dedede !important;
         }
+
+        .fi-btn-label{
+            background: #eecb65;
+            padding: 5px 5px;
+            border-radius: 10px;
+        }
     </style>
 
     @livewireStyles

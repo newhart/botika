@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     public function show(string $slug): View
     {
+        // get the product by here slug
         $product = Product::where('page_title', $slug)
             ->whereHas('images')
             ->with(['images', 'categories', 'variants', 'reviews'])
             ->first();
-        return view('products.index', compact('product'));
+        // get the related product
+        $product_related = Product::whereHas('categories', fn ($q) => $q->whereIn('product_id', $product->categories->pluck('id')))
+            ->whereHas('images')
+            ->with(['images', 'categories'])
+            ->paginate(10);
+
+        return view('products.index', compact('product', 'product_related'));
     }
 
     public function index()
@@ -24,7 +30,7 @@ class ProductController extends Controller
         $products = Product::with(['categories', 'images'])
             ->whereHas('images')
             ->latest()
-            ->paginate(4);
+            ->paginate(10);
         return view('admin.products.index', compact('products'));
     }
 

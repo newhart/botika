@@ -329,96 +329,18 @@
                     <div class="category-menu">
                         <h3>Shop By Product</h3>
                         <ul class="border-bottom-0">
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/decorations.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Decorations</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/pillows.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Bed Linen</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/cushions.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Cushions</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/blankets.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Blankets</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/gift.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Giftwraps</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/sleepware.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Sleepwear</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/bakeware.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Cookware & Bakeware</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/room-fragrance.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Room Fragrance</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/tableware.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Servingware & Tableware</a>
-                                    </h5>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-list">
-                                    <img src="{{ asset('assets/images/furniture/icon/shower.svg') }}"
-                                        class="blur-up lazyload" alt="">
-                                    <h5>
-                                        <a href="shop-left-sidebar.html">Bath & Shower</a>
-                                    </h5>
-                                </div>
-                            </li>
+                            @foreach($categories as $category)
+                                <li>
+                                    <div class="category-list">
+                                        <img src="{{ $category->imageUrl() }}"
+                                             class="blur-up lazyload" alt="">
+                                        <h5>
+                                            <a href="shop-left-sidebar.html">{{$category->name}}</a>
+                                        </h5>
+                                    </div>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
 

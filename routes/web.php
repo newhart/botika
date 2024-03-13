@@ -87,7 +87,9 @@ Route::get('shop-list',  function () {
     return view('shop.index');
 })->name('shop.index');
 
+// display data api to the front
 Route::get('/products-list', [ProductController::class, 'list']);
+Route::get('/categories/find' , [CategoryController::class , 'find'])->name('categories.find');
 
 // Order route
 Route::post('order/store', [OrderController::class, 'store'])->name('order.store')->middleware(['auth', 'user-access:client']);

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Products;
 
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -52,8 +53,12 @@ class EditProduct extends Component implements HasForms
                                 'classified' => 'Classified',
                             ]),
                         Select::make('categories')
+                            ->extraInputAttributes([
+                                'style' => 'border : 2px solid #dede ; color : #0000',
+                            ])
                             ->multiple()
-                            ->relationship('categories',  'name'),
+                            ->options(Category::all()->pluck('name', 'id'))
+                            ->required(),
                         Select::make('brand')
                             ->options([
                                 'puma' => 'Puma',
@@ -155,9 +160,13 @@ class EditProduct extends Component implements HasForms
     public function save(): void
     {
         $data = $this->form->getState();
+        $categories =  $data['categories'];
         $data['page_title'] = Str::slug($data['page_title']);
         $data['tags'] = implode(',', $data['tags']);
+        unset($data['categories']);
         $this->record->update($data);
+        $this->record->categories()->detach($categories);
+        $this->record->categories()->attach($categories);
         $this->form->model($this->record)->saveRelationships();
     }
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
@@ -65,5 +67,11 @@ class CategoryController extends Controller
         }
         $data['image'] = $image->store('categories', 'public');
         return $data;
+    }
+
+    public function find(Request $request) : JsonResponse
+    {
+        $categories = Category::where('name' , 'LIKE' , "%" .$request->get('category_name') ."%")->get();
+        return response()->json($categories);
     }
 }

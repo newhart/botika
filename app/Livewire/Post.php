@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -14,7 +15,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Livewire\Component;
 use Illuminate\Support\Str;
 
@@ -32,9 +32,12 @@ class Post extends Component implements HasForms
     public function submit()
     {
         $data = $this->form->getState();
+        $categories = $data['categories'];
         $data['page_title'] = Str::slug($data['page_title']);
         $data['tags'] = implode(',', $data['tags']);
+        unset($data['categories']);
         $product =  Product::create($data);
+        $product->categories()->attach($categories);
         $this->form->model($product)->saveRelationships();
         // Notification::make()
         //     ->title('Saved successfully')
@@ -72,7 +75,7 @@ class Post extends Component implements HasForms
                                 'style' => 'border : 2px solid #dede ; color : #0000',
                             ])
                             ->multiple()
-                            ->relationship('categories',  'name')
+                            ->options(Category::all()->pluck('name', 'id'))
                             ->required(),
                         Select::make('brand')
                             ->extraInputAttributes([
