@@ -72,6 +72,14 @@ class CategoryController extends Controller
     public function find(Request $request) : JsonResponse
     {
         $categories = Category::where('name' , 'LIKE' , "%" .$request->get('category_name') ."%")->get();
+        $categories->map(fn($item) => $item['value']  = rand(1 , 9));  // add value for all category
+        return response()->json($categories);
+    }
+
+    public function getForLatestCategory(Request $request) : JsonResponse
+    {
+        $categories = Category::limit(4)->latest()->get();
+        $categories->map(fn($item) => $item['value']  = rand(1 , 9));  // add value for all category
         return response()->json($categories);
     }
 }

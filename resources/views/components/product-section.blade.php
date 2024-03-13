@@ -124,7 +124,9 @@
                                 'product' => $product,
                             ])
                         @endforeach
-
+                    </div>
+                    <div class="my-3">
+                        {{ $products->links() }}
                     </div>
                 </div>
 
@@ -139,75 +141,17 @@
                 </div>
 
                 <div class="category-slider-2 product-wrapper no-arrow">
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/decorations.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Decorations</h5>
-                            </div>
-                        </a>
-                    </div>
+                    @foreach ($categories as $category)
+                        <div>
+                            <a href="shop-left-sidebar.html" class="category-box category-dark">
+                                <div>
+                                    <img src="{{ $category->imageUrl() }}" class="blur-up lazyload" alt="">
+                                    <h5>{{ $category->name }}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
 
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/pillows.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Bed linen</h5>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/cushions.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Cushions</h5>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/blankets.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Blankets</h5>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/gift.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Giftwraps</h5>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/sleepware.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Sleepwear</h5>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a href="shop-left-sidebar.html" class="category-box category-dark">
-                            <div>
-                                <img src="{{ asset('assets/images/furniture/icon/bakeware.svg') }}"
-                                    class="blur-up lazyload" alt="">
-                                <h5>Cookware & Bakeware</h5>
-                            </div>
-                        </a>
-                    </div>
                 </div>
 
                 <div class="section-t-space section-b-space">
@@ -322,6 +266,9 @@
                     @endforeach
                     @include('components.modal-detail')
                 </div>
+                <div class="my-3">
+                    {{ $products->links() }}
+                </div>
             </div>
 
             <div class="col-xxl-3 col-xl-4 d-none d-xl-block">
@@ -329,13 +276,13 @@
                     <div class="category-menu">
                         <h3>Shop By Product</h3>
                         <ul class="border-bottom-0">
-                            @foreach($categories as $category)
+                            @foreach ($categories as $category)
                                 <li>
                                     <div class="category-list">
-                                        <img src="{{ $category->imageUrl() }}"
-                                             class="blur-up lazyload" alt="">
+                                        <img src="{{ $category->imageUrl() }}" class="blur-up lazyload"
+                                            alt="">
                                         <h5>
-                                            <a href="shop-left-sidebar.html">{{$category->name}}</a>
+                                            <a href="shop-left-sidebar.html">{{ $category->name }}</a>
                                         </h5>
                                     </div>
                                 </li>

@@ -28,11 +28,12 @@ const setChoice = (type) => {
     }
 }
 
-const handelSearchCategory =  async () => {
+const handelSearchCategory = async () => {
     if (category_search.value.length > 3) {
-        const response = await  axios.get(`/categories/find?category_name=${category_search.value}`);
+        const response = await axios.get(`/categories/find?category_name=${category_search.value}`);
         // const search = new RegExp(category_search.value, 'i'); // prepare a regex object
-        categories.value = categories.value.filter(item => search.test(item.name));
+        // categories.value = categories.value.filter(item => search.test(item.name));
+        categories.value = response.data
     }
 }
 
@@ -46,7 +47,6 @@ const fetchProduct = (page = 1) => {
         .then(res => {
             products.value = res.data
             products.value.data.map(value => value.quantity_front = 1)
-            console.log('product value', products);
         })
         .catch(err => {
             console.log(err);
@@ -149,6 +149,13 @@ const minus = (id) => {
         })
 }
 
+const suggestCategory = () => {
+    axios.get('/categories/for-latest')
+        .then(res => {
+            categories.value = res.data
+        }).catch(error => console.log(error))
+}
+
 // all props
 const { url } = defineProps({
     url: {
@@ -159,6 +166,7 @@ const { url } = defineProps({
 // life cycle
 onMounted(() => {
     fetchProduct()
+    suggestCategory()
 })
 </script>
 <template>
@@ -176,37 +184,38 @@ onMounted(() => {
                                 <h2>Filters</h2>
                                 <a href="javascript:void(0)">Clear All</a>
                             </div>
-<!--                            <ul>-->
-<!--                                <li>-->
-<!--                                    <a href="javascript:void(0)">Vegetable</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="javascript:void(0)">Fruit</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="javascript:void(0)">Fresh</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="javascript:void(0)">Milk</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="javascript:void(0)">Meat</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
+                            <!--                            <ul>-->
+                            <!--                                <li>-->
+                            <!--                                    <a href="javascript:void(0)">Vegetable</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li>-->
+                            <!--                                    <a href="javascript:void(0)">Fruit</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li>-->
+                            <!--                                    <a href="javascript:void(0)">Fresh</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li>-->
+                            <!--                                    <a href="javascript:void(0)">Milk</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li>-->
+                            <!--                                    <a href="javascript:void(0)">Meat</a>-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
                         </div>
 
                         <div class="accordion custome-accordion" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button @click="displayFilter('#collapseOne')" class="accordion-button" type="button">
+                                    <button @click="displayFilter('#collapseOne')" class="accordion-button"
+                                        type="button">
                                         <span>Categories</span>
                                     </button>
                                 </h2>
                                 <div class="hidden" id="collapseOne">
                                     <div class="accordion-body">
                                         <div class="form-floating theme-form-floating-2 search-box">
-                                            <input v-model="category_search" @input="handelSearchCategory()" type="search"
-                                                class="form-control" id="search" placeholder="Search ..">
+                                            <input v-model="category_search" @input="handelSearchCategory()"
+                                                type="search" class="form-control" id="search" placeholder="Search ..">
                                             <label for="search">Search</label>
                                         </div>
 
@@ -431,7 +440,8 @@ onMounted(() => {
                                         <ul class="category-list custom-padding">
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="flexCheckDefault">
+                                                    <input class="checkbox_animated" type="checkbox"
+                                                        id="flexCheckDefault">
                                                     <label class="form-check-label" for="flexCheckDefault">
                                                         <span class="name">upto 5%</span>
                                                         <span class="number">(06)</span>
@@ -441,7 +451,8 @@ onMounted(() => {
 
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="flexCheckDefault1">
+                                                    <input class="checkbox_animated" type="checkbox"
+                                                        id="flexCheckDefault1">
                                                     <label class="form-check-label" for="flexCheckDefault1">
                                                         <span class="name">5% - 10%</span>
                                                         <span class="number">(08)</span>
@@ -451,7 +462,8 @@ onMounted(() => {
 
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="flexCheckDefault2">
+                                                    <input class="checkbox_animated" type="checkbox"
+                                                        id="flexCheckDefault2">
                                                     <label class="form-check-label" for="flexCheckDefault2">
                                                         <span class="name">10% - 15%</span>
                                                         <span class="number">(10)</span>
@@ -461,7 +473,8 @@ onMounted(() => {
 
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="flexCheckDefault3">
+                                                    <input class="checkbox_animated" type="checkbox"
+                                                        id="flexCheckDefault3">
                                                     <label class="form-check-label" for="flexCheckDefault3">
                                                         <span class="name">15% - 25%</span>
                                                         <span class="number">(14)</span>
@@ -471,7 +484,8 @@ onMounted(() => {
 
                                             <li>
                                                 <div class="form-check ps-0 m-0 category-list-box">
-                                                    <input class="checkbox_animated" type="checkbox" id="flexCheckDefault4">
+                                                    <input class="checkbox_animated" type="checkbox"
+                                                        id="flexCheckDefault4">
                                                     <label class="form-check-label" for="flexCheckDefault4">
                                                         <span class="name">More than 25%</span>
                                                         <span class="number">(13)</span>
@@ -627,7 +641,8 @@ onMounted(() => {
                                         <del>${{ product.compare_at_price }}</del>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button" @click="handelAdd(product.id)">Add
+                                        <button class="btn btn-add-cart addcart-button"
+                                            @click="handelAdd(product.id)">Add
                                             <span class="add-icon bg-light-gray">
                                                 <i class="fa-solid fa-plus"></i>
                                             </span>
@@ -640,8 +655,8 @@ onMounted(() => {
                                                 </button>
                                                 <input class="form-control input-number qty-input" type="text"
                                                     name="quantity" :value="product.quantity_front">
-                                                <button type="button" class="qty-left-minus" data-type="minus" data-field=""
-                                                    @click="minus(product.id)">
+                                                <button type="button" class="qty-left-minus" data-type="minus"
+                                                    data-field="" @click="minus(product.id)">
                                                     <i class="fa fa-minus" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -679,7 +694,8 @@ onMounted(() => {
                         </li>
                     </ul>
                 </nav> -->
-                <Bootstrap4Pagination class="my-3" :data="products" @pagination-change-page="fetchProduct" align="center" />
+                <Bootstrap4Pagination class="my-3" :data="products" @pagination-change-page="fetchProduct"
+                    align="center" />
                 <!-- end Pagination  -->
             </div>
 

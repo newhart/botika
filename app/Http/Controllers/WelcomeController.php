@@ -18,6 +18,6 @@ class WelcomeController extends Controller
         $categories =  Category::inRandomOrder()
             ->limit(10)
             ->get(); // get the 10  category for random  ;
-        return view('welcome', compact('products' , 'categories'));
+        return view('welcome', compact('products', 'categories'));
     }
 }

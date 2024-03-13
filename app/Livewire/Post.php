@@ -121,8 +121,8 @@ class Post extends Component implements HasForms
                             ->relationship()
                             ->schema([
                                 FileUpload::make('image')
-                                    ->image()
                                     ->imageEditor()
+                                    ->maxSize(1024)
                                     ->extraInputAttributes([
                                         'style' => 'border : 2px solid #dede ; color : #0000',
                                     ])

@@ -90,6 +90,7 @@ Route::get('shop-list',  function () {
 // display data api to the front
 Route::get('/products-list', [ProductController::class, 'list']);
 Route::get('/categories/find' , [CategoryController::class , 'find'])->name('categories.find');
+Route::get('/categories/for-latest' , [CategoryController::class , 'getForLatestCategory'])->name('categories.suggest');
 
 // Order route
 Route::post('order/store', [OrderController::class, 'store'])->name('order.store')->middleware(['auth', 'user-access:client']);
